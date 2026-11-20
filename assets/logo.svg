@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Icon: Rounded badge with two curved exchange arrows -->
+  <rect x="5" y="8" width="44" height="44" rx="12" fill="url(#brandGrad)" />
+  
+  <!-- Swapping arrows symbol inside the icon -->
+  <path d="M 20 23 L 34 23 M 30 19 L 34 23 L 30 27" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M 34 37 L 20 37 M 24 33 L 20 37 L 24 41" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Brand text -->
+  <text x="58" y="38" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-size="24" font-weight="800" fill="#1E293B">Skill<tspan fill="#4F46E5">Swap</tspan></text>
+  <circle cx="212" cy="36" r="3.5" fill="#7C3AED" />
+</svg>

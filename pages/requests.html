@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exchange Requests - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main class="section" style="padding-top: 2.5rem;">
+    <div class="container container-narrow">
+
+      <!-- Page Header -->
+      <div class="mb-4">
+        <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Skill Swap Requests</h1>
+        <p>Manage incoming swap proposals from peers and monitor requests you've sent.</p>
+      </div>
+
+      <!-- Section: Incoming Requests -->
+      <div class="mb-4">
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fa-solid fa-inbox" style="color: var(--color-primary); font-size: 1.25rem;"></i>
+          <h2 style="font-size: 1.35rem;">Incoming Swap Proposals</h2>
+        </div>
+        <div id="incomingRequestsList">
+          <!-- Dynamically populated by requests.js -->
+        </div>
+      </div>
+
+      <!-- Section: Outgoing Requests -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fa-solid fa-paper-plane" style="color: var(--color-secondary); font-size: 1.25rem;"></i>
+          <h2 style="font-size: 1.35rem;">Sent Proposals (Outgoing)</h2>
+        </div>
+        <div id="outgoingRequestsList">
+          <!-- Dynamically populated by requests.js -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

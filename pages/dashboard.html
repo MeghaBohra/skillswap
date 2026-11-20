@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main class="section" style="padding-top: 2.5rem;">
+    <div class="container">
+
+      <!-- Profile Summary Banner Card -->
+      <div class="card mb-4">
+        <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 1.5rem;">
+          <div class="flex items-center gap-3" style="flex-wrap: wrap;">
+            <div id="dashAvatarWrap">
+              <span class="avatar avatar-lg" style="background-color: #4F46E5;">SS</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <h1 style="font-size: 1.75rem; margin-bottom: 0;">
+                  Welcome, <span id="dashWelcomeName" style="color: var(--color-primary);">Student</span>!
+                </h1>
+                <span id="dashProfileRating" class="badge badge-accepted" style="font-size: 0.8rem;">
+                  <i class="fa-solid fa-star"></i> 5.0
+                </span>
+              </div>
+              <div id="dashProfileMeta" style="font-size: 0.9rem; color: #64748B; margin-bottom: 0.35rem;">
+                Department • Year
+              </div>
+              <p id="dashProfileBio" style="font-size: 0.85rem; color: #475569; max-width: 600px; margin-bottom: 0;">
+                Engineering student passionate about collaborative peer learning.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-1" style="align-items: center; flex-wrap: wrap;">
+            <a href="add-skill.html" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-plus-circle"></i> Teach a Skill
+            </a>
+            <a href="matches.html" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-bolt"></i> Smart Matches
+            </a>
+            <a href="profile.html" class="btn btn-ghost btn-sm" title="View Full Profile">
+              <i class="fa-solid fa-id-card"></i> Profile
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Calculated Requests Metrics Grid (Total, Pending, Accepted, Completed) -->
+      <div class="dashboard-stats-grid mb-4">
+        <div class="dash-stat-card card-hover">
+          <div class="dash-stat-icon" style="background-color: #EEF2FF; color: #4F46E5;">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+          <div class="dash-stat-info">
+            <h3 id="dashStatTotal">0</h3>
+            <span>Total Requests</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-card card-hover">
+          <div class="dash-stat-icon" style="background-color: #FFFBEB; color: #D97706;">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div class="dash-stat-info">
+            <h3 id="dashStatPending">0</h3>
+            <span>Pending Proposals</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-card card-hover">
+          <div class="dash-stat-icon" style="background-color: #ECFDF5; color: #059669;">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <div class="dash-stat-info">
+            <h3 id="dashStatAccepted">0</h3>
+            <span>Accepted Swaps</span>
+          </div>
+        </div>
+
+        <div class="dash-stat-card card-hover">
+          <div class="dash-stat-icon" style="background-color: #EFF6FF; color: #2563EB;">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="dash-stat-info">
+            <h3 id="dashStatCompleted">0</h3>
+            <span>Completed Exchanges</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills I Can Teach and Skills I Want to Learn Lists -->
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        <!-- Skills I Can Teach -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size: 1.15rem; color: var(--color-primary);">
+              <i class="fa-solid fa-chalkboard-user"></i> Skills I Can Teach
+            </h3>
+            <a href="add-skill.html" class="btn btn-outline btn-sm">Manage</a>
+          </div>
+          <div id="dashTeachingSkillsList" class="flex flex-col gap-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Skills I Want to Learn -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size: 1.15rem; color: var(--color-secondary);">
+              <i class="fa-solid fa-graduation-cap"></i> Skills I Want to Learn
+            </h3>
+            <a href="explore.html" class="btn btn-outline btn-sm">Find Mentors</a>
+          </div>
+          <div id="dashWantedSkillsList" class="flex flex-col gap-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity Feed (Top 5 latest requests and reviews) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-timeline" style="color: var(--color-primary); font-size: 1.25rem;"></i>
+            <h2 style="font-size: 1.25rem;">Recent Activity</h2>
+          </div>
+          <span class="badge badge-category">Live Stream</span>
+        </div>
+
+        <div id="dashRecentActivityList">
+          <!-- Dynamically populated with 5 latest requests & reviews -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

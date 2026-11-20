@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add / Manage Skills - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main class="section" style="padding-top: 2.5rem;">
+    <div class="container container-narrow">
+
+      <!-- Page Header -->
+      <div class="mb-4">
+        <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Manage Your Skills</h1>
+        <p>Offer a skill you can teach, specify what you want to learn in exchange, and manage your campus listings.</p>
+      </div>
+
+      <!-- Add / Edit Skill Card -->
+      <div class="card mb-4" id="skillFormCard">
+        <div class="card-header">
+          <h2 style="font-size: 1.25rem;">
+            <i class="fa-solid fa-chalkboard-user" style="color: var(--color-primary);"></i>
+            <span id="formTitleText">Post a Skill Listing</span>
+          </h2>
+          <span class="badge badge-category">Instant LocalStorage Sync</span>
+        </div>
+
+        <form id="addSkillForm" novalidate>
+          <input type="hidden" id="editingSkillId" value="">
+
+          <!-- Section 1: Skill I Can Teach -->
+          <div style="border-bottom: 1px solid var(--color-border); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1rem; color: var(--color-primary); margin-bottom: 0.75rem;">
+              <i class="fa-solid fa-award"></i> 1. Skill You Can Teach
+            </h3>
+
+            <div class="form-group">
+              <label for="offeredSkill" class="form-label">Skill Name</label>
+              <input type="text" id="offeredSkill" class="form-input" placeholder="e.g., Python Basics, Figma UI Design, Acoustic Guitar" required>
+              <div class="form-error" id="offeredSkillError">Please enter the skill name.</div>
+            </div>
+
+            <div class="form-two-col">
+              <div class="form-group">
+                <label for="offeredCategory" class="form-label">Category</label>
+                <select id="offeredCategory" class="form-select" required>
+                  <option value="">Select Category</option>
+                  <option value="Programming">Programming</option>
+                  <option value="Design">Design</option>
+                  <option value="Music">Music</option>
+                  <option value="Languages">Languages</option>
+                  <option value="Academics">Academics</option>
+                  <option value="Photography">Photography</option>
+                </select>
+                <div class="form-error" id="offeredCategoryError">Please select a category.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="offeredLevel" class="form-label">Your Proficiency Level</label>
+                <select id="offeredLevel" class="form-select" required>
+                  <option value="">Select Level</option>
+                  <option value="Beginner">Beginner (Fundamentals)</option>
+                  <option value="Intermediate" selected>Intermediate (Hands-on)</option>
+                  <option value="Advanced">Advanced (Projects/Expertise)</option>
+                </select>
+                <div class="form-error" id="offeredLevelError">Please choose your level.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description" class="form-label">Description & What You'll Cover</label>
+              <textarea id="description" class="form-textarea" rows="3" placeholder="Explain what topics you can teach, sample exercises, or lab assignments you can guide with..." required></textarea>
+              <div class="form-error" id="descriptionError">Please provide a short description (at least 10 characters).</div>
+            </div>
+          </div>
+
+          <!-- Section 2: Skill I Want to Learn -->
+          <div style="margin-bottom: 1.5rem;">
+            <h3 style="font-size: 1rem; color: var(--color-secondary); margin-bottom: 0.75rem;">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i> 2. What You Want in Return
+            </h3>
+
+            <div class="form-two-col">
+              <div class="form-group">
+                <label for="wantedSkill" class="form-label">Skill Desired</label>
+                <input type="text" id="wantedSkill" class="form-input" placeholder="e.g., Acoustic Guitar, Spanish, Engineering Math" required>
+                <div class="form-error" id="wantedSkillError">Please specify the skill you want to learn.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="learningMode" class="form-label">Exchange Mode</label>
+                <select id="learningMode" class="form-select">
+                  <option value="Both">Both (Online or In-Person)</option>
+                  <option value="In-Person">In-Person (Campus Library / Labs)</option>
+                  <option value="Online">Online (Google Meet / Zoom)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Action Buttons -->
+          <div class="flex items-center gap-2">
+            <button type="submit" id="submitSkillBtn" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-plus-circle"></i> Publish Skill Listing
+            </button>
+            <button type="button" id="cancelEditBtn" class="btn btn-outline btn-lg" style="display: none;">
+              Cancel Edit
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- My Existing Listings Table -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <h2 style="font-size: 1.35rem;">
+            My Published Listings (<span id="mySkillsCount">0</span>)
+          </h2>
+          <span style="font-size: 0.85rem; color: #64748B;">
+            Edits update immediately across Explore & Matches
+          </span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Offered Skill</th>
+                <th>Category</th>
+                <th>Level</th>
+                <th>Wanted In Return</th>
+                <th>Mode</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="mySkillsTableBody">
+              <!-- Dynamically populated by skills.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

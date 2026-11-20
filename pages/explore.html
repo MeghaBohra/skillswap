@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Skills - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main class="section" style="padding-top: 2.5rem;">
+    <div class="container">
+      
+      <!-- Page Header -->
+      <div class="flex items-center justify-between mb-4" style="flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Explore Skills</h1>
+          <p>Discover student listings, search by topic, and propose peer skill exchanges.</p>
+        </div>
+        <div>
+          <a href="add-skill.html" class="btn btn-primary">
+            <i class="fa-solid fa-plus-circle"></i> Teach a Skill
+          </a>
+        </div>
+      </div>
+
+      <!-- Filter and Search Toolbar -->
+      <div class="explore-filter-bar">
+        <div class="filter-grid">
+          <!-- 1. Search Box -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="skillSearchInput" class="form-label">Search Skills or Students</label>
+            <div class="search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="skillSearchInput" class="form-input" placeholder="Search Python, Figma, Guitar, Math, names...">
+            </div>
+          </div>
+
+          <!-- 2. Category Filter -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="categoryFilter" class="form-label">Category</label>
+            <select id="categoryFilter" class="form-select">
+              <option value="All">All Categories</option>
+              <option value="Programming">Programming</option>
+              <option value="Design">Design</option>
+              <option value="Music">Music</option>
+              <option value="Languages">Languages</option>
+              <option value="Academics">Academics</option>
+              <option value="Photography">Photography</option>
+            </select>
+          </div>
+
+          <!-- 3. Level Filter -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="levelFilter" class="form-label">Proficiency Level</label>
+            <select id="levelFilter" class="form-select">
+              <option value="All">All Levels</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </div>
+
+          <!-- 4. Sort Options -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="sortFilter" class="form-label">Sort By</label>
+            <select id="sortFilter" class="form-select">
+              <option value="newest">Newest First</option>
+              <option value="name_asc">Mentor Name (A-Z)</option>
+              <option value="level">Level (High to Low)</option>
+            </select>
+          </div>
+
+          <!-- 5. Reset Filters Button -->
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">&nbsp;</label>
+            <button type="button" id="clearFiltersBtn" class="btn btn-outline" title="Reset all search filters">
+              <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Count Bar -->
+      <div class="skills-results-header">
+        <div>
+          <span class="badge badge-category" id="resultsCountBadge" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">
+            Loading listings...
+          </span>
+        </div>
+        <div style="font-size: 0.85rem; color: #64748B;">
+          Click <strong>Request Exchange</strong> to propose a skill trade.
+        </div>
+      </div>
+
+      <!-- Skill Cards Grid Container (Rendered dynamically by skills.js) -->
+      <div class="skills-cards-grid" id="skillsGridContainer"></div>
+
+    </div>
+  </main>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

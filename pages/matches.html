@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Skill Matches - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main class="section" style="padding-top: 2.5rem;">
+    <div class="container container-narrow">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-4" style="flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: 2rem; margin-bottom: 0.35rem;">Smart Skill Matches</h1>
+          <p>Pairs you with peers who teach what you want, and want what you teach.</p>
+        </div>
+        <div>
+          <span class="badge badge-category" id="matchesCountBadge" style="font-size: 0.85rem; padding: 0.4rem 0.85rem;">
+            Computing matches...
+          </span>
+        </div>
+      </div>
+
+      <!-- Match Explanation Banner -->
+      <div class="card mb-4" style="background-color: var(--color-primary-light); border-color: #C7D2FE;">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-lightbulb" style="color: var(--color-primary); font-size: 1.25rem;"></i>
+          <div style="font-size: 0.85rem; color: #312E81;">
+            <strong>Matching Engine Active:</strong> Scores reflect skill complementarity. Active pending/accepted peers are automatically filtered.
+          </div>
+        </div>
+      </div>
+
+      <!-- Matches List Container (populated by matching.js) -->
+      <div id="matchesListContainer" class="mb-4"></div>
+
+      <!-- Section: How Matching Works (Viva & Lab Explanation) -->
+      <div class="card" style="border-top: 4px solid var(--color-primary);">
+        <h2 style="font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--color-primary);">
+          <i class="fa-solid fa-calculator"></i> How Skill Matching Works
+        </h2>
+        <p style="font-size: 0.9rem; color: #475569; margin-bottom: 1.5rem;">
+          Our client-side matching engine compares your teaching capabilities and learning goals with every peer on campus in 4 straightforward steps:
+        </p>
+
+        <!-- 4 Steps Breakdown -->
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: var(--color-bg-alt); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.25rem;">Step 1: Parse Skills</div>
+            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0;">Extracts your offered skills and desired subjects from your published listings.</p>
+          </div>
+          <div style="background: var(--color-bg-alt); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.25rem;">Step 2: Cross Compare</div>
+            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0;">Performs case-insensitive substring matching between what you want and what peers offer.</p>
+          </div>
+          <div style="background: var(--color-bg-alt); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.25rem;">Step 3: Score Compatibility</div>
+            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0;">Assigns points using reciprocal barter rules (95, 75, or 65).</p>
+          </div>
+          <div style="background: var(--color-bg-alt); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+            <div style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.25rem;">Step 4: Active Filter</div>
+            <p style="font-size: 0.8rem; color: #64748B; margin-bottom: 0;">Hides peers with an in-progress proposal so you only see actionable new partners.</p>
+          </div>
+        </div>
+
+        <!-- Worked Example Box -->
+        <div style="background: #F8FAFC; border-left: 4px solid var(--color-secondary); padding: 1rem 1.25rem; border-radius: 0 var(--radius-md) var(--radius-md) 0; margin-bottom: 1.5rem;">
+          <h4 style="font-size: 0.95rem; color: var(--color-secondary); margin-bottom: 0.4rem;">
+            <i class="fa-solid fa-graduation-cap"></i> Worked Example (Rahul & Aarav)
+          </h4>
+          <p style="font-size: 0.85rem; color: #334155; margin-bottom: 0.4rem;">
+            Rahul teaches Python and Web Frontend and wants Acoustic Guitar and Spanish Basics; Aarav teaches Acoustic Guitar and wants Web Frontend; result: mutual match scored 95 points.
+          </p>
+        </div>
+
+        <!-- Scoring Rules Table -->
+        <h4 style="font-size: 0.95rem; margin-bottom: 0.75rem;">Scoring Rules Matrix</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Barter Condition</th>
+                <th>Score</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mutual 2-Way Match</strong></td>
+                <td><span class="badge badge-accepted">95</span></td>
+                <td>Both directions align (they teach what you want AND want what you teach).</td>
+              </tr>
+              <tr>
+                <td><strong>Learning Match</strong></td>
+                <td><span class="badge badge-category">75</span></td>
+                <td>They teach what you want (one-way learning opportunity).</td>
+              </tr>
+              <tr>
+                <td><strong>Mentoring Match</strong></td>
+                <td><span class="badge badge-intermediate">65</span></td>
+                <td>They want what you teach (one-way peer tutoring opportunity).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/* ==========================================================================
+   SkillSwap - CSS Variables (Design Tokens)
+   Defines global color palette, typography, shadows, borders, and spacing.
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --color-primary: #4F46E5;         /* Indigo accent */
+  --color-primary-hover: #4338CA;
+  --color-primary-light: #EEF2FF;
+  
+  --color-secondary: #7C3AED;       /* Violet accent */
+  --color-secondary-hover: #6D28D9;
+  --color-secondary-light: #F5F3FF;
+  
+  /* Single Subtle Gradient */
+  --color-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  
+  /* Backgrounds */
+  --color-bg: #FFFFFF;              /* Clean white */
+  --color-bg-alt: #F8FAFC;          /* Light subtle background */
+  --color-card-bg: #FFFFFF;
+  
+  /* Borders and Dividers */
+  --color-border: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+  
+  /* Typography Colors */
+  --color-text-main: #1E293B;       /* Deep slate for high contrast */
+  --color-text-muted: #64748B;      /* Medium slate for secondary text */
+  --color-text-light: #94A3B8;      /* Light muted text */
+  --color-white: #FFFFFF;
+  
+  /* Functional / Status Colors */
+  --color-success: #10B981;
+  --color-success-bg: #ECFDF5;
+  --color-warning: #F59E0B;
+  --color-warning-bg: #FFFBEB;
+  --color-danger: #EF4444;
+  --color-danger-bg: #FEF2F2;
+  --color-info: #0284C7;
+  --color-info-bg: #F0F9FF;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 0.75rem;          /* 12px */
+  --font-size-sm: 0.875rem;         /* 14px */
+  --font-size-base: 1rem;           /* 16px */
+  --font-size-md: 1.125rem;         /* 18px */
+  --font-size-lg: 1.25rem;          /* 20px */
+  --font-size-xl: 1.5rem;           /* 24px */
+  --font-size-2xl: 2rem;            /* 32px */
+  --font-size-3xl: 2.5rem;          /* 40px */
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  /* Soft Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  
+  /* Layout Spacing */
+  --container-max-width: 1200px;
+}

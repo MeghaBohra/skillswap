@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main class="section" style="padding-top: 2.5rem;">
+    <div class="container container-narrow">
+
+      <!-- Profile Header Card -->
+      <div class="card mb-4">
+        <div class="flex items-center gap-3" style="flex-wrap: wrap;">
+          <div id="profileAvatarWrap">
+            <span class="avatar avatar-xl" style="background-color: #4F46E5;">SS</span>
+          </div>
+          <div style="flex: 1 1 240px;">
+            <div class="flex items-center gap-2 mb-1">
+              <h1 id="profileName" style="font-size: 1.75rem; margin-bottom: 0;">Student Name</h1>
+              <span id="profileRatingBadge" class="badge badge-accepted" style="font-size: 0.8rem;">
+                <i class="fa-solid fa-star"></i> 5.0
+              </span>
+            </div>
+            <div id="profileMeta" style="font-size: 0.9rem; color: #64748B; margin-bottom: 0.4rem;">
+              Department • Year
+            </div>
+            <div class="flex items-center gap-3" style="font-size: 0.8rem; color: #475569; flex-wrap: wrap;">
+              <span>
+                <i class="fa-solid fa-envelope" style="color: var(--color-primary); margin-right: 0.25rem;"></i>
+                <span id="profileEmail">email@demo.edu</span>
+              </span>
+              <span>
+                <i class="fa-solid fa-calendar-days" style="color: var(--color-secondary); margin-right: 0.25rem;"></i>
+                Joined <span id="profileJoinedDate">2024-01-10</span>
+              </span>
+            </div>
+          </div>
+          <div class="flex gap-1" style="align-items: center; flex-wrap: wrap;">
+            <button type="button" id="openEditProfileBtn" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-user-pen"></i> Edit Profile
+            </button>
+            <a href="add-skill.html" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-plus"></i> Post Skills
+            </a>
+            <button onclick="handleLogout()" class="btn btn-ghost btn-sm" title="Sign out">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Student Bio -->
+        <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border);">
+          <span style="font-size: 0.75rem; font-weight: 700; color: #64748B; text-transform: uppercase; display: block; margin-bottom: 0.35rem;">
+            About Me
+          </span>
+          <p id="profileBio" style="font-size: 0.9rem; color: #334155; line-height: 1.6; margin-bottom: 0;">
+            Engineering student enthusiastic about skill sharing.
+          </p>
+        </div>
+      </div>
+
+      <!-- Skills Matrix & Learning Preference -->
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+        <!-- Skills I Can Teach -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size: 1.1rem; color: var(--color-primary);">
+              <i class="fa-solid fa-award"></i> Skills I Can Teach
+            </h3>
+            <span id="profileTeachingCount" class="badge badge-category">0 Skills</span>
+          </div>
+          <div id="profileTeachingList" class="flex flex-col gap-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Skills I Want to Learn -->
+        <div class="card">
+          <div class="card-header">
+            <h3 style="font-size: 1.1rem; color: var(--color-secondary);">
+              <i class="fa-solid fa-lightbulb"></i> Skills I Want to Learn
+            </h3>
+            <span id="profileLearningCount" class="badge badge-intermediate">0 Desired</span>
+          </div>
+          <div id="profileLearningList" class="flex flex-col gap-1">
+            <!-- Dynamically populated -->
+          </div>
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed var(--color-border); font-size: 0.8rem; color: #64748B;">
+            <strong>Learning Mode Preference:</strong> <span id="profileLearningPreference">Both (Online & In-Person)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peer Feedback & Review History (Received) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-star" style="color: #F59E0B; font-size: 1.25rem;"></i>
+            <h2 style="font-size: 1.25rem;">Peer Feedback & Ratings</h2>
+          </div>
+          <span id="profileAverageRatingText" class="badge badge-accepted" style="font-size: 0.85rem; padding: 0.35rem 0.75rem;">
+            Loading ratings...
+          </span>
+        </div>
+
+        <div id="profileReviewsList">
+          <!-- Dynamically populated from LocalStorage reviews -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Edit Profile Modal Dialog -->
+  <div id="editProfileModal" class="modal-backdrop">
+    <div class="modal-box">
+      <div class="flex items-center justify-between mb-2">
+        <h3 style="font-size: 1.25rem;">
+          <i class="fa-solid fa-user-gear" style="color: var(--color-primary);"></i> Edit Student Profile
+        </h3>
+        <button type="button" id="closeEditProfileBtn" style="background:transparent; border:none; font-size:1.25rem; cursor:pointer; color:#64748B;">&times;</button>
+      </div>
+
+      <form id="editProfileForm">
+        <div class="form-group">
+          <label for="editProfileName" class="form-label">Full Name</label>
+          <input type="text" id="editProfileName" class="form-input" required minlength="2">
+        </div>
+
+        <div class="form-two-col">
+          <div class="form-group">
+            <label for="editProfileBranch" class="form-label">Branch / Department</label>
+            <select id="editProfileBranch" class="form-select" required>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Information Technology">Information Technology</option>
+              <option value="Electronics & Comm.">Electronics & Comm.</option>
+              <option value="Electrical Engineering">Electrical Engineering</option>
+              <option value="Mechanical Engineering">Mechanical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Design & Media">Design & Media</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="editProfileYear" class="form-label">Academic Year</label>
+            <select id="editProfileYear" class="form-select" required>
+              <option value="1st Year">1st Year</option>
+              <option value="2nd Year">2nd Year</option>
+              <option value="3rd Year">3rd Year</option>
+              <option value="4th Year">4th Year</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="editProfileBio" class="form-label">Bio & Interests</label>
+          <textarea id="editProfileBio" class="form-textarea" rows="3" placeholder="Tell campus peers about your passions, hobbies, and learning goals..." required minlength="5"></textarea>
+          <span class="form-hint">Brief bio shown on your profile and match cards.</span>
+        </div>
+
+        <div class="flex justify-between items-center mt-3">
+          <button type="button" id="cancelEditProfileBtn" class="btn btn-outline btn-sm">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-check"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

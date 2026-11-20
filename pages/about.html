@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About & Viva Preparation Guide - SkillSwap</title>
+  
+  <!-- Inter Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Relative Stylesheets (using ../ from pages/) -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <!-- Dynamic Navigation Bar (rendered via ui.js) -->
+  <header class="header-nav"></header>
+
+  <main>
+    <section class="about-hero">
+      <div class="container container-narrow">
+        <span class="section-badge">BTech Lab Project Documentation</span>
+        <h1 class="section-title">About SkillSwap & Viva Guide</h1>
+        <p class="section-subtitle">
+          Tagline: <em>"Learn Something. Teach Something. Grow Together."</em><br>
+          A complete, dependency-free web application designed for 2nd-year BTech Web Technology Lab exams.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 1rem;">
+      <div class="container container-narrow">
+        
+        <!-- Project Vision Card -->
+        <div class="card mb-4">
+          <h2 style="font-size: 1.35rem; margin-bottom: 0.75rem; color: var(--color-primary);">
+            <i class="fa-solid fa-bullseye"></i> Problem Statement & Solution
+          </h2>
+          <p>
+            In engineering colleges, students often excel in specific domains—one might be brilliant at C++ and algorithms,
+            another at Figma UI design, and another at playing acoustic guitar or calculus. However, traditional tutoring
+            often involves financial barriers or unstructured favors.
+          </p>
+          <p>
+            <strong>SkillSwap</strong> solves this through a non-monetary, peer-to-peer barter network.
+            Students list what they can teach and what they want to learn, and the platform pairs them for collaborative study sessions.
+          </p>
+        </div>
+
+        <!-- Technical Architecture Overview -->
+        <div class="card mb-4">
+          <h2 style="font-size: 1.35rem; margin-bottom: 1rem; color: var(--color-primary);">
+            <i class="fa-solid fa-layer-group"></i> Architecture & Technology Stack
+          </h2>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Technology</th>
+                  <th>Role in Project</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Structure</strong></td>
+                  <td>Semantic HTML5</td>
+                  <td><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, forms</td>
+                </tr>
+                <tr>
+                  <td><strong>Styling</strong></td>
+                  <td>Modern CSS3</td>
+                  <td>CSS Variables, Flexbox, CSS Grid, media queries (1024px, 768px, 480px)</td>
+                </tr>
+                <tr>
+                  <td><strong>Logic</strong></td>
+                  <td>Vanilla JavaScript (ES6)</td>
+                  <td>DOM manipulation, event delegation, search/filter logic, route guards</td>
+                </tr>
+                <tr>
+                  <td><strong>Persistence</strong></td>
+                  <td>HTML5 LocalStorage</td>
+                  <td>Client-side storage under <code>skillswap_*</code> keys with JSON serialization</td>
+                </tr>
+                <tr>
+                  <td><strong>Icons & Fonts</strong></td>
+                  <td>Font Awesome CDN & Google Fonts</td>
+                  <td>Vector iconography and clean Inter typography</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Comprehensive Viva Questions and Answers -->
+        <div class="mb-4">
+          <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">
+            <i class="fa-solid fa-graduation-cap" style="color: var(--color-secondary);"></i>
+            2nd-Year Lab Viva Questions & Answers
+          </h2>
+          <p style="margin-bottom: 1.5rem;">
+            Use these concise, point-wise explanations during your external lab viva examination:
+          </p>
+
+          <div class="viva-card">
+            <h4>Q1: What is HTML5 LocalStorage and how is it used in this project?</h4>
+            <p>
+              <strong>Answer:</strong> LocalStorage is part of the Web Storage API that allows browsers to store up to 5MB of key-value string data persistently. Unlike cookies, data is not sent with every HTTP request. In SkillSwap, we use <code>JSON.stringify()</code> to store JavaScript arrays/objects under keys prefixed with <code>skillswap_</code>, and <code>JSON.parse()</code> to retrieve them.
+            </p>
+          </div>
+
+          <div class="viva-card">
+            <h4>Q2: How does the application run by simply double-clicking index.html without a server?</h4>
+            <p>
+              <strong>Answer:</strong> All links, scripts, and CSS references use relative file paths (e.g., <code>css/base.css</code> or <code>../js/storage.js</code>). Browsers can open them using the <code>file:///</code> protocol. Because no server-side compilation, Node.js, or backend API is used, the browser directly renders the HTML/CSS and runs JavaScript in the client-side sandbox.
+            </p>
+          </div>
+
+          <div class="viva-card">
+            <h4>Q3: How are passwords handled and why are they not stored?</h4>
+            <p>
+              <strong>Answer:</strong> In client-side static architectures without backend encryption or hashing, storing passwords in plain LocalStorage is insecure. In SkillSwap, password length and confirmation are validated in JavaScript to satisfy form validation requirements, but the password field is intentionally excluded from the stored user object, adhering to security lab guidelines.
+            </p>
+          </div>
+
+          <div class="viva-card">
+            <h4>Q4: How do the search and multiple filters work simultaneously in Explore?</h4>
+            <p>
+              <strong>Answer:</strong> The <code>filterAndSortSkills()</code> function chains JavaScript array methods (<code>filter</code> and <code>sort</code>). It takes the full array of skills, filters by keyword substring match (case-insensitive), filters by category and proficiency level, and then sorts by date, alphabetical name, or level hierarchy. The resulting array is rendered dynamically into the DOM using template literals.
+            </p>
+          </div>
+
+          <div class="viva-card">
+            <h4>Q5: How does the responsive design adapt to mobile phones?</h4>
+            <p>
+              <strong>Answer:</strong> Media queries at 1024px, 768px, and 480px dynamically adjust CSS Grid column counts (e.g., from 6 columns down to 3, 2, and 1). At 768px and below, the desktop navigation menu is hidden and replaced by a toggleable hamburger menu controlled by a lightweight JavaScript click listener that toggles the <code>open</code> CSS class.
+            </p>
+          </div>
+
+          <div class="viva-card">
+            <h4>Q6: How does the protected page route guard function?</h4>
+            <p>
+              <strong>Answer:</strong> The <code>checkAuthGuard()</code> function in <code>auth.js</code> checks if the current page filename is in a protected list (e.g., <code>dashboard.html</code>, <code>add-skill.html</code>). If <code>isLoggedIn()</code> returns false, it immediately redirects the browser to <code>login.html</code> using <code>window.location.href</code>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Demonstration Controls -->
+        <div class="card text-center" style="background-color: var(--color-bg-alt);">
+          <h3 style="margin-bottom: 0.5rem;">Testing & Resetting Data</h3>
+          <p style="margin-bottom: 1rem;">
+            You can restore the sample mock dataset anytime during your lab presentation.
+          </p>
+          <div class="flex justify-center gap-2">
+            <button onclick="resetDemoData()" class="btn btn-primary btn-reset-demo">
+              <i class="fa-solid fa-rotate-left"></i> Reset Demo Data Now
+            </button>
+            <a href="explore.html" class="btn btn-outline">
+              <i class="fa-solid fa-compass"></i> Explore Skills
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Dynamic Footer (rendered via ui.js) -->
+  <footer class="footer"></footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts in required order -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/skills.js"></script>
+  <script src="../js/matching.js"></script>
+  <script src="../js/requests.js"></script>
+  <script src="../js/reviews.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
